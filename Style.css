@@ -1,1 +1,29 @@
-/* No CSS *//*# sourceMappingURL=Style.css.map */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: grey;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+.btn_prod {
+  -webkit-box-shadow: 2px 3px 5px black;
+          box-shadow: 2px 3px 5px black;
+  opacity: 1;
+}
+
+.btn_prod:hover {
+  -webkit-box-shadow: 6px 7px 10px black;
+          box-shadow: 6px 7px 10px black;
+}
+/*# sourceMappingURL=Style.css.map */
