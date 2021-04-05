@@ -17,7 +17,7 @@ fetch("http://localhost:3000/api/furniture/" + id_product)
     let Row = document.getElementById('row');
 
     let Card = document.createElement('div');
-    Card.classList.add('Card','text-center', 'shadow-sm', "mt-5");
+    Card.classList.add('Card','shadow-sm', "mt-5");
     Card.style.width = '30%';
     Card.style.marginLeft = "34%";
     Card.style.borderRadius = "25px";
@@ -30,14 +30,14 @@ fetch("http://localhost:3000/api/furniture/" + id_product)
     Img.style.borderRadius = "25px 25px 0 0";
 
     let Name = document.createElement('h3');
-    Name.classList.add('p-2')
+    Name.classList.add('p-2', "text-center")
     Name.textContent = name;
 
     let Price = document.createElement('p');
     Price.textContent = price/100 + ' €';
 
     let Desc = document.createElement('p');
-    Desc.classList.add('p-2')
+    Desc.classList.add('p-2', "text-center")
     Desc.textContent = desc;
 
     let Btn = document.createElement('a');
