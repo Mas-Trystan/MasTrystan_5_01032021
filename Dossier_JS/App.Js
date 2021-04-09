@@ -1,4 +1,4 @@
-fetch("http://localhost:3000/api/furniture")
+fetch("https://ab-p5-api.herokuapp.com/api/teddies")
 .then(res => res.json())
 .then(data => {
     console.log(data);
@@ -66,7 +66,6 @@ fetch("http://localhost:3000/api/furniture")
         Col.appendChild(Card);
         Card.appendChild(Img);
         Card.appendChild(cardBody)
-
 
     }
 })
