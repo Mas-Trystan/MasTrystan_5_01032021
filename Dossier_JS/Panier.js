@@ -17,9 +17,9 @@ for( let i = 0; i < Recup_Json.length; i++) {
         let desc = data['description'];
         let img = data['imageUrl'];
         let perso = data['varnish'];
-
+        
         let Row = document.getElementById('Row_Card');
-
+        
         let Card = document.createElement('div');
         Card.classList.add('Card','shadow-sm', "mt-5", 'text-center');
         Card.style.width = '30%';
@@ -32,17 +32,25 @@ for( let i = 0; i < Recup_Json.length; i++) {
         Img.classList.add('Img_Prod')
         Img.style.width = '100%';
         Img.style.borderRadius = "25px 25px 0 0";
-
+        
         let Name = document.createElement('h3');
         Name.classList.add('p-2')
         Name.textContent = name;
-
+        
         let Price = document.createElement('p');
         Price.textContent = price/100 + ' €';
-
+        
         let Desc = document.createElement('p');
         Desc.classList.add('p-2')
         Desc.textContent = desc;
+        
+        // let Prix_Actuel = parseInt(localStorage.getItem('Prix'));
+        // localStorage.setItem('Prix', Prix_Actuel + price)
+        
+        // let Total_Price = document.querySelector('#Total');
+        // let Total = document.createElement('p');
+        // Total.classList.add('Prix_Total', 'text-center', 'mt-5');
+        // Total.innerText = "Total à payer : " + localStorage.getItem('Prix')/100 + '€';
         
         
         Row.appendChild(Card);
@@ -50,22 +58,12 @@ for( let i = 0; i < Recup_Json.length; i++) {
         Card.appendChild(Name);
         Card.appendChild(Desc);
         Card.appendChild(Price);
+        // Total_Price.appendChild(Total);
         
-        
+        console.log();
 
     })
 };
-        let Prix_Actuel = parseInt(localStorage.getItem('Prix'));
-        
-        localStorage.setItem('Prix', Prix_Actuel + price)
-        let Total_Price = document.querySelector('#Total');
-        let Total = document.createElement('p');
-        Total.classList.add('Prix_Total', 'text-center', 'mt-5');
-        Total.innerText = "Total à payer : " + localStorage.getItem('Prix')/100 + '€';
-
-        Total_Price.appendChild(Total);
-
-        console.log(localStorage.getItem('Prix'));
 
 
 const VERIF_TEXT = document.querySelectorAll("input[name='Nom']");
