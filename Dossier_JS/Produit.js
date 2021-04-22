@@ -3,7 +3,7 @@ let split_url = url.split('#');
 let id_product = split_url[1]
 console.log(split_url)
 
-fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id_product)
+fetch("http://localhost:3000/api/furniture/" + id_product)
 .then(res => res.json())
 .then(data => {
     console.log(data);
@@ -13,7 +13,7 @@ fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id_product)
     let price = data['price'];
     let desc = data['description'];
     let img = data['imageUrl'];
-    let perso = data['colors'];
+    let perso = data['varnish'];
     
     let Row = document.getElementById('row');
 
@@ -41,9 +41,13 @@ fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id_product)
     Desc.classList.add('p-2')
     Desc.textContent = desc;
 
-    let Perso = document.createElement('p');
-    Perso.classList.add('Perso')
-    Perso.innerText =  perso;
+    let Perso = document.createElement('select');
+    Perso.classList.add('Perso');
+    for(let i = 0; i < perso.length; i++) {
+        let Perso_Option = document.createElement('option');
+        Perso_Option.innerText =  perso[i];
+        Perso.appendChild(Perso_Option);
+    }
 
     let Btn = document.createElement('a');
     Btn.classList.add('btn_prod', 'mb-4', "p-2");
@@ -58,11 +62,11 @@ fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id_product)
     Card.appendChild(Img);
     Card.appendChild(Name);
     Card.appendChild(Desc);
-    Card.appendChild(Perso)
+    Card.appendChild(Perso);
     Card.appendChild(Price);
     Card.appendChild(Btn);
     
-    console.log(Perso);
+    console.log(perso);
 
     Btn.addEventListener('click', () => {
         
@@ -70,11 +74,6 @@ fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id_product)
 
             let Parse = JSON.parse(localStorage.getItem('Achat')); console.log(Parse);
             Parse.push(data['_id']);
-            Parse.push(data['name']);
-            Parse.push(data['price']);
-            Parse.push(data['description']);
-            Parse.push(data['imageUrl']);
-            Parse.push(data['colors']);
             
             let Obj_String = JSON.stringify(Parse);
             localStorage.setItem('Achat', Obj_String);
@@ -83,11 +82,6 @@ fetch("https://ab-p5-api.herokuapp.com/api/teddies/" + id_product)
 
             let Panier = [
                 id = data['_id'],
-                name = data['name'],
-                price = data['price'],
-                desc = data['description'],
-                img = data['imageUrl'],
-                perso = data['colors']
             ]
             
             let Obj_String = JSON.stringify(Panier);

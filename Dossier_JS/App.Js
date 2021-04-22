@@ -1,4 +1,4 @@
-fetch("https://ab-p5-api.herokuapp.com/api/teddies")
+fetch("http://localhost:3000/api/furniture")
 .then(res => res.json())
 .then(data => {
     console.log(data);
