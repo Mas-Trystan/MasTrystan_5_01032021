@@ -44,14 +44,14 @@
 
             <div class="Container">
 
-                <form>
+                <form action="" method="POST" id="Form">
 
                     <div class="row Row_Username">
 
                         <div class="col col-md-4">
 
                             <label for="inputText">First Name</label>
-                            <input type="text" class="form-control Prenom Text" name='Nom' placeholder="Trystan">
+                            <input type="text" class="form-control" id='Prenom' name='Prenom' placeholder="Jean">
                             <span class="Span_Text"></span>
 
                         </div>
@@ -59,7 +59,7 @@
                         <div class="col col-md-4">
 
                             <label for="inputText2">Last Name</label>
-                            <input type="text" class="form-control Nom Text" name='Nom' placeholder="Mas">
+                            <input type="text" class="form-control Nom Text" id='Nom' name='Nom' placeholder="Dupont">
                             <span class="Span_Text"></span>
 
                         </div>
@@ -71,8 +71,8 @@
                         <div class="form-group col-md-5">
 
                             <label for="Email">Email</label>
-                            <input type="email" class="form-control" id="Email" placeholder="Email@hotmail.com">
-                            <span></span>
+                            <input type="email" class="form-control" id="Email" name="Email" placeholder="Email@hotmail.com">
+                            <span class="Span_Email"></span>
 
                         </div>
 
@@ -91,7 +91,7 @@
                         <div class="form-group col-md-5">
 
                             <label for="Ville">City</label>
-                            <input type="text" class="form-control Ville Text" id="inputCity" name='Nom' placeholder="Paris">
+                            <input type="text" class="form-control Ville Text" id="City" name='Nom' placeholder="Paris">
                             <span class="Span_Text"></span>
 
                         </div>

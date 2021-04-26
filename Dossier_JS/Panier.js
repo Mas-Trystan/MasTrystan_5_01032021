@@ -1,6 +1,5 @@
 let Obj_Recup = localStorage.getItem('Achat');
 let Recup_Json = JSON.parse(Obj_Recup);
-let Prix = localStorage.setItem('Prix', 0);
 
 console.log(Recup_Json);
 
@@ -17,6 +16,7 @@ for( let i = 0; i < Recup_Json.length; i++) {
         let desc = data['description'];
         let img = data['imageUrl'];
         let perso = data['varnish'];
+        let Prix = localStorage.setItem('Prix', 0);
         
         let Row = document.getElementById('Row_Card');
         
@@ -44,13 +44,8 @@ for( let i = 0; i < Recup_Json.length; i++) {
         Desc.classList.add('p-2')
         Desc.textContent = desc;
         
-        // let Prix_Actuel = parseInt(localStorage.getItem('Prix'));
-        // localStorage.setItem('Prix', Prix_Actuel + price)
-        
-        // let Total_Price = document.querySelector('#Total');
-        // let Total = document.createElement('p');
-        // Total.classList.add('Prix_Total', 'text-center', 'mt-5');
-        // Total.innerText = "Total à payer : " + localStorage.getItem('Prix')/100 + '€';
+        let Prix_Actuel = parseInt(localStorage.getItem('Prix'));
+        localStorage.setItem('Prix', Prix_Actuel + price)
         
         
         Row.appendChild(Card);
@@ -58,42 +53,149 @@ for( let i = 0; i < Recup_Json.length; i++) {
         Card.appendChild(Name);
         Card.appendChild(Desc);
         Card.appendChild(Price);
-        // Total_Price.appendChild(Total);
+        Total_Price.appendChild(Total);
         
         console.log();
-
+        
     })
 };
 
+let Total_Price = document.querySelector('#Total');
+let Total = document.createElement('p');
+Total.classList.add('Prix_Total', 'text-center', 'mt-5');
+Total.innerText = "Total à payer : " + localStorage.getItem('Prix')/100  + '€';
 
-const VERIF_TEXT = document.querySelectorAll("input[name='Nom']");
-let Span_Text = document.querySelectorAll('.Span_Text');
-let Regex_Text = /[a-zA-Z]/;
+console.log(localStorage.getItem('Prix'));
 
-console.log(Regex_Text);
+// ................................................VerifForm......................................................
 
-for( let i = 0; i < VERIF_TEXT.length ; i++){
+// let Form = document.querySelector('#Form')
+
+// console.log(Form.Nom);
+
+// let RegexNom = document.querySelectorAll('input[name="Nom"]');
+
+// RegexNom.forEach((RegexNom) => {
+
+//     console.log(RegexNom);
+
+// });
+
+// Form.Email.addEventListener('change', () => {
+//     VALIDEMAIL(this);
+// })
+
+// const VALIDEMAIL = (inputEmail) => {
+
+//     let RegexEmail = new RegExp ('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$' , 'g');
     
-    VERIF_TEXT.addEventListener('change', () => {
+//     let TestEmail = RegexEmail.test(inputEmail.value);
+    
+//     console.log(TestEmail);
+    
+// }
+
+
+// /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+
+
+
+
+
+// const VERIF_TEXT = document.querySelectorAll("input[name='Nom']");
+// let Span_Text = document.querySelectorAll('.Span_Text');
+
+// VERIF_TEXT.forEach((VERIF_TEXT) => {
+    
+//     console.log(VERIF_TEXT);    
+    
+// });
+// Span_Text.forEach((Span_Text) => {
+    
+//     console.log(Span_Text);    
+    
+// });
+
+// for( let i = 0; i < VERIF_TEXT.length ; i++){
+    
+//     VERIF_TEXT[i].addEventListener('change', () => {
         
-        let Verif_T = VERIF_TEXT[i];
+//         let Regex_Text = /^[a-zA-Z]+$/;
+//         let V = VERIF_TEXT[i];
+//         let S = Span_Text[i];
         
-        if(Regex_Text){
+//         if(Regex_Text){
             
-            Span_Text.innerHTML = 'Nom valide';
+//             S.innerText = 'Nom Valide';
+            
+//         }else{
+            
+//             S.innerText = 'Nom Invalide';
+//         }
+        
+//     });
+    
+// }
 
-        }else{
+// const VERIF_EMAIL = document.getElementById("Email");
+// let Span_Email = document.querySelector('.Span_Email');
 
-            Span_Text.innerHTML = 'Nom invalide';
+// console.log(VERIF_EMAIL);
 
-        }
-    console.log(Span_Text);
-    })
+// VERIF_EMAIL.addEventListener('change', () => {
+    
+//     let Regex_Text = "^([A-Za-z0-9_\-\.])+\@";
+//     let S = Span_Email;
+    
+//     if(VERIF_EMAIL){
+        
+//         S.innerText = 'Email Valide';
+        
+//     }else{
 
-}
+//         S.innerText = 'Email Invalide';
+
+//     }
+    
+// });
+
+// ................................................StorageInput......................................................
+
+const INPUT_NAME = document.querySelector('#Nom');
+const INPUT_PRENOM = document.querySelector('#Prenom');
+console.log();
 
 
-console.log(Span_Text);
+INPUT_NAME.addEventListener('change', () => {
+    
+    const Inp = {
+        Nom: INPUT_NAME.value,
+        Prenom: INPUT_PRENOM.value
+    }
+
+    localStorage.setItem('Name', JSON.stringify(Inp));
+
+})
+
+
+// INPUT.forEach((INPUT) => {
+
+//         INPUT.addEventListener('change', () => {
+
+//             let NameConf = localStorage.setItem('Name', INPUT.value);
+            
+//             for(let i = 0; i < NameConf.length; i++){
+
+
+//             }
+            
+//         })
+
+//     console.log(INPUT);
+
+// })
+
+// ................................................BtnConfAchat......................................................
 
 let Btn_Conf = document.querySelector('.Btn');
 
@@ -108,3 +210,10 @@ Conf.style.backgroundColor = "white";
 
 
 Btn_Conf.appendChild(Conf);
+// ...................................................ConfAchat......................................................
+
+// Btn_Conf.addEventListener('click', () => {
+
+//     localStorage.getItem('Name', document.querySelector(INPUT));
+    
+// })

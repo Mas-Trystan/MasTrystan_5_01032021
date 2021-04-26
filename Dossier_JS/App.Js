@@ -48,7 +48,7 @@ fetch("http://localhost:3000/api/furniture")
         let btn = document.createElement('a');
         btn.classList.add("btn", "btn-sm", "btn-outline-secondary","btn_buy");
         btn.innerText = "Voir produit";
-        btn.href = '../Pages/Produit.html' + '#' + data[i]['_id'];
+        btn.href = 'Pages/Produit.html' + '#' + data[i]['_id'];
 
         let price = document.createElement('small');
         price.classList.add("text-muted");

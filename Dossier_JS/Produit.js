@@ -68,12 +68,15 @@ fetch("http://localhost:3000/api/furniture/" + id_product)
     
     console.log(perso);
 
+// ................................................BtnClick......................................................
+
     Btn.addEventListener('click', () => {
         
         if(localStorage.getItem('Achat')){
 
-            let Parse = JSON.parse(localStorage.getItem('Achat')); console.log(Parse);
+            let Parse = JSON.parse(localStorage.getItem('Achat')); 
             Parse.push(data['_id']);
+            console.log(Parse);
             
             let Obj_String = JSON.stringify(Parse);
             localStorage.setItem('Achat', Obj_String);
