@@ -2,15 +2,28 @@ let Container = document.querySelector('.text-center');
 
 let Parse_Nom = JSON.parse(localStorage.getItem('Name')); 
 let Thx_Client = document.createElement('p');
-Thx_Client.innerText = 'Merci à vous Monsieur/Madame ' + Parse_Nom.Nom + ' ' + Parse_Nom.Prenom + ' Pour votre achat chez Orinoco :)';
+Thx_Client.innerText = 'Merci à vous  ' + Parse_Nom.Nom + ' ' + Parse_Nom.Prenom + ' pour votre achat chez Orinoco :).';
 
 let Parse_Prix = JSON.parse(localStorage.getItem('Prix')); 
 let Prix_Fin = document.createElement('p');
-Prix_Fin.innerText = 'Le montant total de votre achat est de: ' + Parse_Prix/100 + '€';
+Prix_Fin.innerText = 'Le montant total de votre achat est de: ' + Parse_Prix/100 + '€.';
 
 let Parse_Achats = JSON.parse(localStorage.getItem('Achat')); 
 let Achats = document.createElement('h2');
 Achats.innerText = "Voici votre liste d'achat chez Onorico: ";
+
+// let Id_Commandes = document.createElement('p');
+// Id_Commandes.classList.add('UniqueId');
+// Id_Commandes.innerText = generate();
+
+// function generate() {
+//     let id = () => {
+//       return Math.floor((1 + Math.random()) * 0x10000)
+//         .toString(16)
+//         .substring(1);
+//     }
+//     document.getElementsByClassName("uniqueID").innerHTML = id();
+// }
 
 
 for( let i = 0; i < Parse_Achats.length; i++) {
@@ -25,7 +38,6 @@ for( let i = 0; i < Parse_Achats.length; i++) {
         let price = data['price'];
         let desc = data['description'];
         let img = data['imageUrl'];
-        let perso = data['varnish'];
         
         let Card = document.createElement('div');
         Card.classList.add('Card','shadow-sm', "mt-5", 'text-center');
@@ -56,11 +68,10 @@ for( let i = 0; i < Parse_Achats.length; i++) {
         Card.appendChild(Name);
         Card.appendChild(Desc);
         
-        console.log();
-        
     })
 };
 
 Container.appendChild(Thx_Client);
 Container.appendChild(Prix_Fin);
 Container.appendChild(Achats);
+// Container.appendChild(Id_Commandes);

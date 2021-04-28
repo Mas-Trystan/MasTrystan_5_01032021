@@ -69,96 +69,53 @@ console.log(localStorage.getItem('Prix'));
 
 // ................................................VerifForm......................................................
 
-// let Form = document.querySelector('#Form')
+let Form = document.querySelector('#Form');
+let Span_Text = document.querySelectorAll('.Span_Text');
+let Span_Email = document.querySelector('.Span_Email');
+let VerifText = Form.Nom;
+let VerifEmail = Form.Email;
 
-// console.log(Form.Nom);
-
-// let RegexNom = document.querySelectorAll('input[name="Nom"]');
-
-// RegexNom.forEach((RegexNom) => {
-
-//     console.log(RegexNom);
-
-// });
-
-// Form.Email.addEventListener('change', () => {
-//     VALIDEMAIL(this);
-// })
-
-// const VALIDEMAIL = (inputEmail) => {
-
-//     let RegexEmail = new RegExp ('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$' , 'g');
-    
-//     let TestEmail = RegexEmail.test(inputEmail.value);
-    
-//     console.log(TestEmail);
-    
-// }
-
-
-// /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
-
-
-
-
-
-// const VERIF_TEXT = document.querySelectorAll("input[name='Nom']");
-// let Span_Text = document.querySelectorAll('.Span_Text');
-
-// VERIF_TEXT.forEach((VERIF_TEXT) => {
-    
-//     console.log(VERIF_TEXT);    
-    
-// });
-// Span_Text.forEach((Span_Text) => {
-    
-//     console.log(Span_Text);    
-    
-// });
-
-// for( let i = 0; i < VERIF_TEXT.length ; i++){
-    
-//     VERIF_TEXT[i].addEventListener('change', () => {
-        
-//         let Regex_Text = /^[a-zA-Z]+$/;
-//         let V = VERIF_TEXT[i];
-//         let S = Span_Text[i];
-        
-//         if(Regex_Text){
+console.log(Span_Email);
             
-//             S.innerText = 'Nom Valide';
             
-//         }else{
-            
-//             S.innerText = 'Nom Invalide';
-//         }
-        
-//     });
+for( let i = 0; i < VerifText.length ; i++){
+
+    let V_t = VerifText[i];
+    let S = Span_Text[i];
     
-// }
-
-// const VERIF_EMAIL = document.getElementById("Email");
-// let Span_Email = document.querySelector('.Span_Email');
-
-// console.log(VERIF_EMAIL);
-
-// VERIF_EMAIL.addEventListener('change', () => {
+    V_t.addEventListener('change', function(){
     
-//     let Regex_Text = "^([A-Za-z0-9_\-\.])+\@";
-//     let S = Span_Email;
+        let Regex_Text = /^[a-zA-Z' ]+$/;
+        console.log(Regex_Text.test(this.value));
+
+        if(Regex_Text.test(this.value)){
+
+            S.innerText = 'Nom Valide';
+
+        }else{
+
+            S.innerText = 'Nom Invalide';
+
+        }
+    })
     
-//     if(VERIF_EMAIL){
-        
-//         S.innerText = 'Email Valide';
-        
-//     }else{
-
-//         S.innerText = 'Email Invalide';
-
-//     }
+}
     
-// });
+VerifEmail.addEventListener('change', function(){
+    
+    let Regex_Email = /^[a-zA-Z]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
+    console.log(Regex_Email.test(this.value));
 
+    if(Regex_Email.test(this.value)){
+
+        Span_Email.innerText = 'Nom Valide';
+
+    }else{
+
+        Span_Email.innerText = 'Nom Invalide';
+
+    }
+})
 // ................................................StorageInput......................................................
 
 const INPUT_NAME = document.querySelector('#Nom');
@@ -177,24 +134,6 @@ INPUT_NAME.addEventListener('change', () => {
 
 })
 
-
-// INPUT.forEach((INPUT) => {
-
-//         INPUT.addEventListener('change', () => {
-
-//             let NameConf = localStorage.setItem('Name', INPUT.value);
-            
-//             for(let i = 0; i < NameConf.length; i++){
-
-
-//             }
-            
-//         })
-
-//     console.log(INPUT);
-
-// })
-
 // ................................................BtnConfAchat......................................................
 
 let Btn_Conf = document.querySelector('.Btn');
@@ -210,10 +149,3 @@ Conf.style.backgroundColor = "white";
 
 
 Btn_Conf.appendChild(Conf);
-// ...................................................ConfAchat......................................................
-
-// Btn_Conf.addEventListener('click', () => {
-
-//     localStorage.getItem('Name', document.querySelector(INPUT));
-    
-// })
