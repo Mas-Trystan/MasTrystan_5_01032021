@@ -72,10 +72,12 @@ console.log(localStorage.getItem('Prix'));
 let Form = document.querySelector('#Form');
 let Span_Text = document.querySelectorAll('.Span_Text');
 let Span_Email = document.querySelector('.Span_Email');
+let Span_Adress = document.querySelector('.Span_Adress');
 let VerifText = Form.Nom;
 let VerifEmail = Form.Email;
+let VerifAdress = Form.Adress;
 
-console.log(Span_Email);
+console.log(VerifAdress);
             
             
 for( let i = 0; i < VerifText.length ; i++){
@@ -116,6 +118,23 @@ VerifEmail.addEventListener('change', function(){
 
     }
 })
+
+VerifAdress.addEventListener('change', function(){
+    
+    let Regex_Adress = /^[a-zA-Z0-9 ]+$/;
+    console.log(Regex_Adress.test(this.value));
+
+    if(Regex_Adress.test(this.value)){
+
+        Span_Adress.innerText = 'Nom Valide';
+
+    }else{
+
+        Span_Adress.innerText = 'Nom Invalide';
+
+    }
+})
+
 // ................................................StorageInput......................................................
 
 const INPUT_NAME = document.querySelector('#Nom');
