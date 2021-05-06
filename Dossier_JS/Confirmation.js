@@ -10,21 +10,20 @@ Prix_Fin.innerText = 'Le montant total de votre achat est de: ' + Parse_Prix/100
 
 let Parse_Achats = JSON.parse(localStorage.getItem('Achat')); 
 let Achats = document.createElement('h2');
-Achats.innerText = "Voici votre liste d'achat chez Onorico: ";
+Achats.innerText = "Voici votre liste d'achat : ";
 
-// let Id_Commandes = document.createElement('p');
-// Id_Commandes.classList.add('UniqueId');
-// Id_Commandes.innerText = generate();
+// let Product_Id = document.createElement('p');
+// Product_Id.innerText = 'Votre identifiant commande est le : ' + ;
 
-// function generate() {
-//     let id = () => {
-//       return Math.floor((1 + Math.random()) * 0x10000)
-//         .toString(16)
-//         .substring(1);
-//     }
-//     document.getElementsByClassName("uniqueID").innerHTML = id();
-// }
 
+Container.appendChild(Thx_Client);
+Container.appendChild(Prix_Fin);
+Container.appendChild(Achats);
+// Container.appendChild(Product_Id);
+
+
+
+// ................................................CreaDesCartesAchats......................................................
 
 for( let i = 0; i < Parse_Achats.length; i++) {
     
@@ -70,8 +69,3 @@ for( let i = 0; i < Parse_Achats.length; i++) {
         
     })
 };
-
-Container.appendChild(Thx_Client);
-Container.appendChild(Prix_Fin);
-Container.appendChild(Achats);
-// Container.appendChild(Id_Commandes);

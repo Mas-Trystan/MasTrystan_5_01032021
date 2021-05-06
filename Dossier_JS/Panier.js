@@ -1,7 +1,16 @@
+// ................................................RecupDeAchat..................................................
+
 let Obj_Recup = localStorage.getItem('Achat');
 let Recup_Json = JSON.parse(Obj_Recup);
+let Prix = localStorage.setItem('Prix', 0);
 
-console.log(Recup_Json);
+// ................................................Crea<p>DePrixTotal.............................................
+
+let Total_Price = document.querySelector('#Total');
+let Total = document.createElement('p');
+Total.classList.add('Prix_Total', 'text-center', 'mt-5');
+
+// ................................................CreaCarteAchat.................................................
 
 for( let i = 0; i < Recup_Json.length; i++) {
     
@@ -16,7 +25,6 @@ for( let i = 0; i < Recup_Json.length; i++) {
         let desc = data['description'];
         let img = data['imageUrl'];
         let perso = data['varnish'];
-        let Prix = localStorage.setItem('Prix', 0);
         
         let Row = document.getElementById('Row_Card');
         
@@ -57,15 +65,9 @@ for( let i = 0; i < Recup_Json.length; i++) {
         
         console.log();
         
+        Total.innerText = "Total à payer : " + localStorage.getItem('Prix')/100  + '€';
     })
 };
-
-let Total_Price = document.querySelector('#Total');
-let Total = document.createElement('p');
-Total.classList.add('Prix_Total', 'text-center', 'mt-5');
-Total.innerText = "Total à payer : " + localStorage.getItem('Prix')/100  + '€';
-
-console.log(localStorage.getItem('Prix'));
 
 // ................................................VerifForm......................................................
 
@@ -76,8 +78,6 @@ let Span_Adress = document.querySelector('.Span_Adress');
 let VerifText = Form.Nom;
 let VerifEmail = Form.Email;
 let VerifAdress = Form.Adress;
-
-console.log(VerifAdress);
             
             
 for( let i = 0; i < VerifText.length ; i++){
@@ -135,11 +135,14 @@ VerifAdress.addEventListener('change', function(){
     }
 })
 
+
 // ................................................StorageInput......................................................
 
 const INPUT_NAME = document.querySelector('#Nom');
 const INPUT_PRENOM = document.querySelector('#Prenom');
-console.log();
+const INPUT_EMAIL = document.querySelector('#Email');
+const INPUT_ADRESS = document.querySelector('#Adress');
+const INPUT_CITY = document.querySelector('#City');
 
 
 INPUT_NAME.addEventListener('change', () => {
@@ -168,3 +171,53 @@ Conf.style.backgroundColor = "white";
 
 
 Btn_Conf.appendChild(Conf);
+
+// ................................................FetchPost......................................................
+
+Form.addEventListener('change', () => {
+    
+    let Array_Contact = {
+        lastName: INPUT_NAME.value,
+        firstName: INPUT_PRENOM.value,
+        address: INPUT_ADRESS.value,
+        city: INPUT_CITY.value,
+        email: INPUT_EMAIL.value
+    }
+    
+    localStorage.setItem('Array_Contact', JSON.stringify(Array_Contact));
+    
+})
+
+let Contact = JSON.parse(localStorage.getItem('Array_Contact'));
+let Produits = Recup_Json;
+
+console.log(Contact);
+console.log(Produits);
+Btn_Conf.addEventListener('click', (e) => {
+
+    let orderId = 1;
+
+    e.preventDefault();
+
+    const FETCH = fetch("http://localhost:3000/api/furniture/order",{
+        
+        headers: {
+
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+
+        },
+
+        method: "POST",
+        body: JSON.stringify({
+            contact: Contact,
+            products: Produits,
+            order_id: orderId
+        }),
+
+    })
+    .then(function(res){ console.log(res.json()) })
+    .then(function(res){ console.log(res) })
+    .catch(function(res){ console.log(res) })
+
+});

@@ -43,10 +43,13 @@ fetch("http://localhost:3000/api/furniture/" + id_product)
 
     let Perso = document.createElement('select');
     Perso.classList.add('Perso');
+
     for(let i = 0; i < perso.length; i++) {
+
         let Perso_Option = document.createElement('option');
         Perso_Option.innerText =  perso[i];
         Perso.appendChild(Perso_Option);
+
     }
 
     let Btn = document.createElement('a');
@@ -65,8 +68,6 @@ fetch("http://localhost:3000/api/furniture/" + id_product)
     Card.appendChild(Perso);
     Card.appendChild(Price);
     Card.appendChild(Btn);
-    
-    console.log(perso);
 
 // ................................................BtnClick......................................................
 
@@ -94,4 +95,4 @@ fetch("http://localhost:3000/api/furniture/" + id_product)
         
     })
 
-})
+});
