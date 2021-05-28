@@ -176,13 +176,17 @@ Btn_Conf.appendChild(Conf);
 
 Form.addEventListener('change', () => {
     
-    let Array_Contact = {
-        lastName: INPUT_NAME.value,
-        firstName: INPUT_PRENOM.value,
-        address: INPUT_ADRESS.value,
-        city: INPUT_CITY.value,
-        email: INPUT_EMAIL.value
-    }
+    let Array_Contact = 
+    [["firstName :", INPUT_PRENOM.value],["lastName :", INPUT_NAME.value],["address :", INPUT_ADRESS.value],["city :", INPUT_CITY.value],["email :", INPUT_EMAIL.value]];
+    
+    // {
+    //     firstName: INPUT_PRENOM.value,
+    //     lastName: INPUT_NAME.value,
+    //     address: INPUT_ADRESS.value,
+    //     city: INPUT_CITY.value,
+    //     email: INPUT_EMAIL.value
+    // } 
+    
     
     localStorage.setItem('Array_Contact', JSON.stringify(Array_Contact));
     
@@ -191,15 +195,16 @@ Form.addEventListener('change', () => {
 let Contact = JSON.parse(localStorage.getItem('Array_Contact'));
 let Produits = Recup_Json;
 
+
 console.log(Contact);
 console.log(Produits);
-Btn_Conf.addEventListener('click', (e) => {
 
-    let orderId = 1;
+
+Btn_Conf.addEventListener('click', (e) => {
 
     e.preventDefault();
 
-    const FETCH = fetch("http://localhost:3000/api/furniture/order",{
+    fetch("http://localhost:3000/api/furniture/order",{
         
         headers: {
 
@@ -212,12 +217,16 @@ Btn_Conf.addEventListener('click', (e) => {
         body: JSON.stringify({
             contact: Contact,
             products: Produits,
-            order_id: orderId
-        }),
+        }), 
+        
 
     })
-    .then(function(res){ console.log(res.json()) })
-    .then(function(res){ console.log(res) })
-    .catch(function(res){ console.log(res) })
+    .then(response => response.json())  
+    .then(json => console.log(json))    
+    .catch(err => console.log('Request Failed', err)); 
 
 });
+
+
+
+

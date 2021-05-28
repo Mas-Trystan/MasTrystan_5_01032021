@@ -12,22 +12,16 @@ let Parse_Achats = JSON.parse(localStorage.getItem('Achat'));
 let Achats = document.createElement('h2');
 Achats.innerText = "Voici votre liste d'achat : ";
 
-// let Product_Id = document.createElement('p');
-// Product_Id.innerText = 'Votre identifiant commande est le : ' + ;
-
 
 Container.appendChild(Thx_Client);
 Container.appendChild(Prix_Fin);
 Container.appendChild(Achats);
-// Container.appendChild(Product_Id);
-
-
 
 // ................................................CreaDesCartesAchats......................................................
 
 for( let i = 0; i < Parse_Achats.length; i++) {
     
-    fetch("http://localhost:3000/api/furniture/" + Parse_Achats[i])
+    fetch("http://localhost:3000/api/teddies/" + Parse_Achats[i])
     .then(res => res.json())
     .then(data => {
         console.log(data);
