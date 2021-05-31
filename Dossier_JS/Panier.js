@@ -176,16 +176,15 @@ Btn_Conf.appendChild(Conf);
 
 Form.addEventListener('change', () => {
     
-    let Array_Contact = 
-    [["firstName :", INPUT_PRENOM.value],["lastName :", INPUT_NAME.value],["address :", INPUT_ADRESS.value],["city :", INPUT_CITY.value],["email :", INPUT_EMAIL.value]];
-    
-    // {
-    //     firstName: INPUT_PRENOM.value,
-    //     lastName: INPUT_NAME.value,
-    //     address: INPUT_ADRESS.value,
-    //     city: INPUT_CITY.value,
-    //     email: INPUT_EMAIL.value
-    // } 
+    let Array_Contact = {
+
+        firstName: INPUT_PRENOM.value,
+        lastName: INPUT_NAME.value,
+        address: INPUT_ADRESS.value,
+        city: INPUT_CITY.value,
+        email: INPUT_EMAIL.value
+
+    } 
     
     
     localStorage.setItem('Array_Contact', JSON.stringify(Array_Contact));
@@ -202,7 +201,7 @@ console.log(Produits);
 
 Btn_Conf.addEventListener('click', (e) => {
 
-    e.preventDefault();
+    // e.preventDefault();
 
     fetch("http://localhost:3000/api/furniture/order",{
         
@@ -219,14 +218,9 @@ Btn_Conf.addEventListener('click', (e) => {
             products: Produits,
         }), 
         
-
+        
     })
     .then(response => response.json())  
-    .then(json => console.log(json))    
-    .catch(err => console.log('Request Failed', err)); 
-
+    .then(json => localStorage.setItem("ID", json.orderId))
+    .catch(err => console.log('Request Failed', err));
 });
-
-
-
-

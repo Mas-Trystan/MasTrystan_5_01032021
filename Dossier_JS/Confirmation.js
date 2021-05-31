@@ -8,11 +8,16 @@ let Parse_Prix = JSON.parse(localStorage.getItem('Prix'));
 let Prix_Fin = document.createElement('p');
 Prix_Fin.innerText = 'Le montant total de votre achat est de: ' + Parse_Prix/100 + '€.';
 
+let Parse_Id = localStorage.getItem("ID");
+let Id_Fin = document.createElement('p');
+Id_Fin.innerText = "Voici l'identifiant de votre commande : " + Parse_Id;
+
 let Parse_Achats = JSON.parse(localStorage.getItem('Achat')); 
 let Achats = document.createElement('h2');
 Achats.innerText = "Voici votre liste d'achat : ";
 
 
+Container.appendChild(Id_Fin);
 Container.appendChild(Thx_Client);
 Container.appendChild(Prix_Fin);
 Container.appendChild(Achats);
@@ -21,7 +26,7 @@ Container.appendChild(Achats);
 
 for( let i = 0; i < Parse_Achats.length; i++) {
     
-    fetch("http://localhost:3000/api/teddies/" + Parse_Achats[i])
+    fetch("http://localhost:3000/api/furniture/" + Parse_Achats[i])
     .then(res => res.json())
     .then(data => {
         console.log(data);
