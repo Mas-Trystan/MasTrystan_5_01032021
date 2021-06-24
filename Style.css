@@ -37,4 +37,21 @@ form {
 form .Row_Username {
   width: 100%;
 }
+
+.Card {
+  width: 50%;
+  margin-Top: 30px;
+  margin-left: 25%;
+  background: white;
+  border-Radius: 25px;
+}
+
+.Img {
+  width: 100%;
+  border-radius: 25px 25px 0 0;
+  -webkit-border-radius: 25px 25px 0 0;
+  -moz-border-radius: 25px 25px 0 0;
+  -ms-border-radius: 25px 25px 0 0;
+  -o-border-radius: 25px 25px 0 0;
+}
 /*# sourceMappingURL=Style.css.map */
