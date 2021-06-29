@@ -72,8 +72,7 @@ for (let i = 0; i < recup_json.length; i++) {
 
 let Form = document.querySelector("#Form");
 let Span_Text = document.querySelectorAll(".Span_Text");
-let Span_Email = document.querySelector(".Span_Email");
-let Span_Adress = document.querySelector(".Span_Adress");
+
 let VerifText = Form.Nom;
 let VerifEmail = Form.Email;
 let VerifAdress = Form.Adress;
@@ -94,26 +93,12 @@ for (let i = 0; i < VerifText.length; i++) {
   });
 }
 
-VerifEmail.addEventListener("change", function () {
-  let Regex_Email = /^[a-zA-Z]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
-  console.log(Regex_Email.test(this.value));
-
-  if (Regex_Email.test(this.value)) {
-    Span_Email.innerText = "Nom Valide";
-  } else {
-    Span_Email.innerText = "Nom Invalide";
-  }
+VerifEmail.addEventListener("change", (e) => {
+  verificationEmail(e.target.value, '.Span_Email')
 });
 
-VerifAdress.addEventListener("change", function () {
-  let Regex_Adress = /^[a-zA-Z0-9 ]+$/;
-  console.log(Regex_Adress.test(this.value));
-
-  if (Regex_Adress.test(this.value)) {
-    Span_Adress.innerText = "Nom Valide";
-  } else {
-    Span_Adress.innerText = "Nom Invalide";
-  }
+VerifAdress.addEventListener("change", (e) => {
+  verificationAdress(e.target.value, '.Span_Adress')
 });
 
 // ................................................StorageInput......................................................
@@ -129,14 +114,15 @@ INPUT_NAME.addEventListener("change", () => {
     Nom: INPUT_NAME.value,
     Prenom: INPUT_PRENOM.value,
   };
-
+  
   localStorage.setItem("Name", JSON.stringify(Inp));
 });
 
 // ................................................FetchPost......................................................
 
 Form.addEventListener("submit", (e) => {
-
+  e.preventDefault();
+  
   let array_contact = {
     firstName: INPUT_PRENOM.value,
     lastName: INPUT_NAME.value,
@@ -144,31 +130,66 @@ Form.addEventListener("submit", (e) => {
     city: INPUT_CITY.value,
     email: INPUT_EMAIL.value,
   };
-
+  if(!verificationEmail(array_contact.email, '.Span_Email')){
+    return false
+  }
+  if(!verificationAdress(array_contact.adress, '.Span_Adress'))
+  
   localStorage.setItem("Array_Contact", JSON.stringify(array_contact));
-
+  
   let contact = JSON.parse(localStorage.getItem("Array_Contact"));
   let Produits = recup_json;
-
+  
   console.log(contact);
   console.log(Produits);
-
+  
   fetch("http://localhost:3000/api/furniture/order", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-
+    
     method: "POST",
     body: JSON.stringify({
       contact: contact,
       products: Produits,
     }),
   })
-    .then((response) => response.json())
-    .then((json) => {
-      localStorage.setItem("ID", json.orderId);
-      window.location.href = "Confirmation.html";
-    })
-    .catch((err) => console.log("Request Failed", err));
+  .then((response) => response.json())
+  .then((json) => {
+    localStorage.setItem("ID", json.orderId);
+    window.location.href = "Confirmation.html";
+  })
+  .catch((err) => console.log("Request Failed", err));
 });
+
+
+
+function verificationEmail(email, confirmation_span){
+  
+  let Span_Email = document.querySelector(confirmation_span);
+  let Regex_Email = /^[a-zA-Z]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
+  console.log(Regex_Email.test(email));
+  console.log(this);
+  if (Regex_Email.test(email)) {
+    Span_Email.innerText = "email Valide";
+    return true
+  }  
+  Span_Email.innerText = "email Invalide";
+  return false
+  
+}
+
+function verificationAdress(adress, confirmation_span){
+
+  let Span_Adress = document.querySelector(".Span_Adress");
+  let Regex_Adress = /^[a-zA-Z0-9 ]+$/;
+  console.log(Regex_Adress.test(this.value));
+
+  if (Regex_Adress.test(this.value)) {
+    Span_Adress.innerText = "Nom Valide";
+  } else {
+    Span_Adress.innerText = "Nom Invalide";
+  }
+
+}
